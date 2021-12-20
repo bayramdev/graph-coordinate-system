@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import { GithubSourceLink } from "./GithubSourceLink";
 
 export const Header = () => {
   return (
@@ -24,6 +25,10 @@ export const Header = () => {
               <Link href="/graph" passHref>
                 <Nav.Link>Graph</Nav.Link>
               </Link>
+            </Nav>
+
+            <Nav>
+              <GithubSourceLink />
             </Nav>
           </Navbar.Collapse>
         </Container>
