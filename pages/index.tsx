@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { Button } from "react-bootstrap";
 
 const Home: NextPage = () => {
   return (
@@ -9,7 +10,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div>hello world</div>
+      <Button variant="primary">hello world</Button>
     </div>
   );
 };
