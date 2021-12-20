@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { GithubSourceLink } from "./GithubSourceLink";
+import { HeaderLink } from "./HeaderLink";
 
 export const Header = () => {
   return (
@@ -16,17 +17,9 @@ export const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link href="/extract" passHref>
-                <Nav.Link>Extract</Nav.Link>
-              </Link>
-
-              <Link href="/coordinates" passHref>
-                <Nav.Link>Coordinates</Nav.Link>
-              </Link>
-
-              <Link href="/graph" passHref>
-                <Nav.Link>Graph</Nav.Link>
-              </Link>
+              <HeaderLink href="/extract">Extract</HeaderLink>
+              <HeaderLink href="/coordinates">Coordinates</HeaderLink>
+              <HeaderLink href="/graph">Graph</HeaderLink>
             </Nav>
 
             <Nav>
