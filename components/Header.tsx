@@ -10,15 +10,17 @@ export const Header = () => {
     <header>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Graph Coordinate System</Navbar.Brand>
+          <Link href="/" passHref>
+            <Navbar.Brand>Graph Coordinate System</Navbar.Brand>
+          </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Link href="/extract">
+              <Link href="/extract" passHref>
                 <Nav.Link>Extract</Nav.Link>
               </Link>
 
-              <Link href="/coordinate">
+              <Link href="/coordinates" passHref>
                 <Nav.Link>Coordinates</Nav.Link>
               </Link>
 
