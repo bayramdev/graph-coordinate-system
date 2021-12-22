@@ -3,7 +3,7 @@ import Image from "next/image";
 import githubIcon from "@/public/github-light-icon.png";
 import Anchor from "react-bootstrap/Anchor";
 
-export const GithubSourceLink = () => {
+const GithubSourceLink = () => {
   return (
     <Anchor
       href="https://github.com/bayramdev/graph-coordinate-system"
@@ -13,3 +13,5 @@ export const GithubSourceLink = () => {
     </Anchor>
   );
 };
+
+export default GithubSourceLink;

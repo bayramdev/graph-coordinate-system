@@ -7,7 +7,7 @@ interface RouteAwareNavLinkProps {
   href: string;
 }
 
-export const HeaderLink: React.FC<RouteAwareNavLinkProps> = (props) => {
+const HeaderLink: React.FC<RouteAwareNavLinkProps> = (props) => {
   const router = useRouter();
   const isActive = router.asPath.startsWith(props.href);
 
@@ -17,3 +17,5 @@ export const HeaderLink: React.FC<RouteAwareNavLinkProps> = (props) => {
     </Link>
   );
 };
+
+export default HeaderLink;

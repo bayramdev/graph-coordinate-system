@@ -3,10 +3,10 @@ import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import { GithubSourceLink } from "./GithubSourceLink";
-import { HeaderLink } from "./HeaderLink";
+import GithubSourceLink from "./GithubSourceLink";
+import HeaderLink from "./HeaderLink";
 
-export const Header = () => {
+const Header = () => {
   return (
     <header>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -31,3 +31,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

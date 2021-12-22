@@ -1,13 +1,13 @@
 import React from "react";
 import Head from "next/head";
 import Container from "react-bootstrap/Container";
-import { Header } from "./Header";
+import Header from "./Header";
 
 interface HeaderedPageProps {
   title?: string | undefined;
 }
 
-export const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
+const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
   const title = props.title ?? "Graph Coordinate System";
 
   return (
@@ -23,3 +23,5 @@ export const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
     </div>
   );
 };
+
+export default HeaderedPage;

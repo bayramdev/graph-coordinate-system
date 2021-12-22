@@ -1,7 +1,7 @@
 import React from "react";
 import Alert from "react-bootstrap/Alert";
 
-export const WorkInProgressAlert = () => {
+const WorkInProgressAlert = () => {
   return (
     <Alert variant="info">
       <Alert.Heading>This page is work in progress</Alert.Heading>
@@ -9,3 +9,5 @@ export const WorkInProgressAlert = () => {
     </Alert>
   );
 };
+
+export default WorkInProgressAlert;
