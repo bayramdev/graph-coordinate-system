@@ -3,13 +3,13 @@ import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import GithubSourceLink from "./GithubSourceLink";
 import HeaderLink from "./HeaderLink";
+import HeaderDataButton from "./HeaderDataButton";
 
 const Header = () => {
   return (
     <header>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
         <Container>
           <Link href="/" passHref>
             <Navbar.Brand>Graph Coordinate System</Navbar.Brand>
@@ -23,7 +23,7 @@ const Header = () => {
             </Nav>
 
             <Nav>
-              <GithubSourceLink />
+              <HeaderDataButton />
             </Nav>
           </Navbar.Collapse>
         </Container>
