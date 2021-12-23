@@ -1,6 +1,9 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import HeaderDropdownGraph from "./HeaderDropdownGraph";
 import { GraphsContext } from "@/contexts/graphs";
 import { useJsonGraphs } from "hooks/useJsonGraph";
 
@@ -22,9 +25,16 @@ const HeaderDataButton = () => {
       Loading...
     </Button>
   ) : graphs ? (
-    <Button variant="warning" onClick={handleReset}>
-      Reset data
-    </Button>
+    <Row>
+      <Col>
+        <HeaderDropdownGraph />
+      </Col>
+      <Col>
+        <Button variant="warning" onClick={handleReset}>
+          Reset data
+        </Button>
+      </Col>
+    </Row>
   ) : (
     <Form.Group controlId="formFile">
       <Form.Control type="file" accept=".json" onChange={handleFile} />
