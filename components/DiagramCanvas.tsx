@@ -6,13 +6,13 @@ import ReactFlow, {
 } from "react-flow-renderer";
 import { NonNullGraphsContextType } from "@/contexts/graphs";
 
-type GraphCanvasProps = {
+type DiagramCanvasProps = {
   context: NonNullGraphsContextType;
 };
 
-const GRAPH_CIRCLE_RADIUS = 1000;
+const DIAGRAM_CIRCLE_RADIUS = 1000;
 
-const GraphCanvas: React.FC<GraphCanvasProps> = (props) => {
+const DiagramCanvas: React.FC<DiagramCanvasProps> = (props) => {
   return (
     <ReactFlow
       elements={[
@@ -23,11 +23,11 @@ const GraphCanvas: React.FC<GraphCanvasProps> = (props) => {
               x:
                 Math.cos(
                   (2 * Math.PI * index) / props.context.current.nodes.length
-                ) * GRAPH_CIRCLE_RADIUS,
+                ) * DIAGRAM_CIRCLE_RADIUS,
               y:
                 Math.sin(
                   (2 * Math.PI * index) / props.context.current.nodes.length
-                ) * GRAPH_CIRCLE_RADIUS,
+                ) * DIAGRAM_CIRCLE_RADIUS,
             },
             data: { label: node.label },
             connectable: false,
@@ -37,7 +37,7 @@ const GraphCanvas: React.FC<GraphCanvasProps> = (props) => {
           (edge): FlowEdge => ({
             id: edge.source + edge.target,
             label: edge.metadata.factor,
-            labelStyle: { fontSize: 14, fontFamily: "monospace" },
+            labelStyle: { fontSize: 14 },
             labelBgPadding: [6, 3],
             labelBgBorderRadius: 5,
             source: edge.source,
@@ -52,4 +52,4 @@ const GraphCanvas: React.FC<GraphCanvasProps> = (props) => {
   );
 };
 
-export default GraphCanvas;
+export default DiagramCanvas;

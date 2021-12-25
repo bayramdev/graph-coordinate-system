@@ -2,16 +2,16 @@ import React from "react";
 import type { NextPage } from "next";
 import HeaderedPage from "@/components/HeaderedPage";
 import NonNullGraphsContextElement from "@/components/NonNullGraphsContextElement";
-import GraphCanvas from "@/components/GraphCanvas";
+import DiagramCanvas from "@/components/DiagramCanvas";
 
-const GraphPage: NextPage = () => {
+const DiagramPage: NextPage = () => {
   return (
     <HeaderedPage>
       <NonNullGraphsContextElement
-        contextElement={(context) => <GraphCanvas context={context} />}
+        contextElement={(context) => <DiagramCanvas context={context} />}
       />
     </HeaderedPage>
   );
 };
 
-export default GraphPage;
+export default DiagramPage;

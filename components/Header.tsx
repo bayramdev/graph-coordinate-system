@@ -18,7 +18,7 @@ const Header = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <HeaderLink href="/coordinates">Coordinates</HeaderLink>
-              <HeaderLink href="/graph">Graph</HeaderLink>
+              <HeaderLink href="/diagram">Diagram</HeaderLink>
               <HeaderLink href="/graph3d">Graph 3D</HeaderLink>
             </Nav>
 
