@@ -9,7 +9,7 @@ const GithubSourceLink = () => {
       href="https://github.com/bayramdev/graph-coordinate-system"
       aria-label="Website source code link"
     >
-      <Image src={githubIcon} />
+      <Image src={githubIcon} alt="GitHub icon" />
     </Anchor>
   );
 };
