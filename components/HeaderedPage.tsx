@@ -4,14 +4,16 @@ import Container from "react-bootstrap/Container";
 import Header from "./Header";
 
 interface HeaderedPageProps {
-  title?: string | undefined;
+  title?: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
   const title = props.title ?? "Graph Coordinate System";
 
   return (
-    <div>
+    <div style={props.style} className={props.className}>
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -19,7 +21,7 @@ const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
 
       <Header />
 
-      <Container style={{ marginTop: 24 }}>{props.children}</Container>
+      <Container className="pt-4">{props.children}</Container>
     </div>
   );
 };
