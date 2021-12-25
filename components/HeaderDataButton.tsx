@@ -8,7 +8,7 @@ import { GraphsContext } from "@/contexts/graphs";
 import { useJsonGraphs } from "hooks/useJsonGraph";
 
 const HeaderDataButton = () => {
-  const { graphs, setGraphs } = React.useContext(GraphsContext);
+  const { graphs, changeGraphs } = React.useContext(GraphsContext);
   const { loading, setJsonGraphs } = useJsonGraphs();
 
   const handleFile: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -17,7 +17,7 @@ const HeaderDataButton = () => {
   };
 
   const handleReset: React.MouseEventHandler = (e) => {
-    setGraphs(null);
+    changeGraphs(null);
   };
 
   return loading ? (

@@ -13,7 +13,7 @@ const readJson = async (file: File): Promise<Object> => {
 };
 
 export const useJsonGraphs = () => {
-  const { setGraphs } = React.useContext(GraphsContext);
+  const { changeGraphs } = React.useContext(GraphsContext);
   const [loading, setLoading] = React.useState(false);
 
   return {
@@ -21,7 +21,7 @@ export const useJsonGraphs = () => {
     setJsonGraphs: async (file: File) => {
       setLoading(true);
       const json = await readJson(file);
-      setGraphs(json as GraphsType);
+      changeGraphs(json as GraphsType);
       setLoading(false);
     },
   };

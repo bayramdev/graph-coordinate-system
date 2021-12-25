@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 type NodeID = string;
 type EdgeMetadata = { factor: number };
 
@@ -10,3 +12,5 @@ export type GraphType = {
 export type GraphsType = {
   graphs: GraphType[];
 };
+
+export type SetGraphsType = Dispatch<SetStateAction<GraphsType | null>>;

@@ -1,11 +1,11 @@
 import { createContext, useState, Dispatch, SetStateAction } from "react";
 import { createMatrix } from "utils/matrix";
-import { GraphsType, GraphType } from "@/types/graphs";
+import { GraphsType, GraphType, SetGraphsType } from "@/types/graphs";
 import { MatrixType } from "@/types/matrix";
 
 export type GraphsContextType = {
   graphs: GraphsType | null;
-  setGraphs: Dispatch<SetStateAction<GraphsType | null>>;
+  changeGraphs: SetGraphsType;
   current: GraphType | null;
   changeCurrent: (label: string) => void;
   matrix: MatrixType | null;
@@ -27,11 +27,17 @@ export const GraphsProvider: React.FC = ({ children }) => {
     setMatrix(matrix);
   };
 
+  const changeGraphs: SetGraphsType = (value) => {
+    setGraphs(value);
+    setCurrent(null);
+    setMatrix(null);
+  };
+
   return (
     <GraphsContext.Provider
       value={{
         graphs,
-        setGraphs,
+        changeGraphs,
         current,
         changeCurrent,
         matrix,
