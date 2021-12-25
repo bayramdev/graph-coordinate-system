@@ -13,7 +13,9 @@ export const createMatrix = (graph: GraphType): MatrixType => {
     const targetIndex = graph.nodes.findIndex(
       (node) => node.id === edge.target
     );
-    matrix[targetIndex][sourceIndex] = edge.metadata.factor;
+    if (sourceIndex !== -1 && targetIndex !== -1) {
+      matrix[targetIndex][sourceIndex] = edge.metadata.factor;
+    }
   }
 
   return matrix;
