@@ -3,6 +3,14 @@ import { createMatrix } from "utils/matrix";
 import { GraphsType, GraphType, SetGraphsType } from "@/types/graphs";
 import { MatrixType } from "@/types/matrix";
 
+export type NonNullGraphsContextType = {
+  graphs: GraphsType;
+  changeGraphs: SetGraphsType;
+  current: GraphType;
+  changeCurrent: (label: string) => void;
+  matrix: MatrixType;
+};
+
 export type GraphsContextType = {
   graphs: GraphsType | null;
   changeGraphs: SetGraphsType;
