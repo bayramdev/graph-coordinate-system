@@ -5,15 +5,13 @@ import Header from "./Header";
 
 interface HeaderedPageProps {
   title?: string;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
 const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
   const title = props.title ?? "Graph Coordinate System";
 
   return (
-    <div style={props.style} className={props.className}>
+    <div className="w-100 h-100 d-flex flex-column">
       <Head>
         <title>{title}</title>
         <link rel="icon" href="/favicon.ico" />
@@ -21,7 +19,7 @@ const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
 
       <Header />
 
-      <Container className="pt-4">{props.children}</Container>
+      <Container className="py-4 w-100 h-100">{props.children}</Container>
     </div>
   );
 };
