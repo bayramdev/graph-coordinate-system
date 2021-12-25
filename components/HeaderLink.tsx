@@ -8,8 +8,11 @@ interface RouteAwareNavLinkProps {
 }
 
 const HeaderLink: React.FC<RouteAwareNavLinkProps> = (props) => {
-  const router = useRouter();
-  const isActive = router.asPath.startsWith(props.href);
+  const { asPath } = useRouter();
+  const hrefIndex = asPath.indexOf(props.href);
+  const isActive =
+    hrefIndex !== -1 &&
+    (asPath === props.href || asPath[hrefIndex + 1] === "/");
 
   return (
     <Link href={props.href} passHref>
