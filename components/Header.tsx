@@ -17,7 +17,6 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <HeaderLink href="/extract">Extract</HeaderLink>
               <HeaderLink href="/coordinates">Coordinates</HeaderLink>
               <HeaderLink href="/graph">Graph</HeaderLink>
             </Nav>
