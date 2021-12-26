@@ -1,6 +1,11 @@
-import { createContext, useState, Dispatch, SetStateAction } from "react";
+import { createContext, useState } from "react";
 import { createMatrix } from "utils/matrix";
-import { GraphsType, GraphType, SetGraphsType } from "@/types/graphs";
+import {
+  GraphsType,
+  GraphType,
+  NodeIDType,
+  SetGraphsType,
+} from "@/types/graphs";
 import { MatrixType } from "@/types/matrix";
 
 export type NonNullGraphsContextType = {
@@ -36,7 +41,28 @@ export const GraphsProvider: React.FC = ({ children }) => {
   };
 
   const changeGraphs: SetGraphsType = (value) => {
-    setGraphs(value);
+    let filteredValue = ((): GraphsType | null => {
+      const newGraphs = value instanceof Function ? value(graphs) : value;
+      if (!newGraphs) return null;
+
+      const filteredGraphs = newGraphs.graphs.map((graph) => ({
+        ...graph,
+        edges: graph.edges.filter((edge) => {
+          const isNodeInGraph = (nodeID: NodeIDType, graph: GraphType) => {
+            return graph.nodes.some((n) => nodeID === n.id);
+          };
+
+          return (
+            isNodeInGraph(edge.source, graph) &&
+            isNodeInGraph(edge.target, graph)
+          );
+        }),
+      }));
+
+      return { graphs: filteredGraphs };
+    })();
+
+    setGraphs(filteredValue);
     setCurrent(null);
     setMatrix(null);
   };
