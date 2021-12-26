@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import HeaderedPage from "@/components/HeaderedPage";
+import PageTemplate from "@/components/PageTemplate";
 import type { GraphsType } from "@/types/graphs";
 
 const EXAMPLE_JSON: GraphsType = {
@@ -26,7 +26,7 @@ const EXAMPLE_JSON: GraphsType = {
 
 const AboutPage: NextPage = () => {
   return (
-    <HeaderedPage>
+    <PageTemplate>
       <h1 className="h2">Graph Coordinate System</h1>
 
       <p>
@@ -36,7 +36,7 @@ const AboutPage: NextPage = () => {
       </p>
 
       <pre>{JSON.stringify(EXAMPLE_JSON, null, 2)}</pre>
-    </HeaderedPage>
+    </PageTemplate>
   );
 };
 

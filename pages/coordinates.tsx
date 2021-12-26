@@ -1,7 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
-import HeaderedPage from "@/components/HeaderedPage";
+import PageTemplate from "@/components/PageTemplate";
 import NonNullGraphsContextElement from "@/components/NonNullGraphsContextElement";
 const CoordinatesCanvas = dynamic(
   () => import("@/components/CoordinatesCanvas"),
@@ -10,13 +10,13 @@ const CoordinatesCanvas = dynamic(
 
 const CoordinateSystemPage: NextPage = () => {
   return (
-    <HeaderedPage>
+    <PageTemplate>
       <NonNullGraphsContextElement
         contextElement={(context) => (
           <CoordinatesCanvas matrix={context.matrix} />
         )}
       />
-    </HeaderedPage>
+    </PageTemplate>
   );
 };
 

@@ -4,11 +4,11 @@ import Container from "react-bootstrap/Container";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-interface HeaderedPageProps {
+interface PageTemplateProps {
   title?: string;
 }
 
-const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
+const PageTemplate: React.FC<PageTemplateProps> = (props) => {
   const title = props.title ?? "Graph Coordinate System";
 
   return (
@@ -29,4 +29,4 @@ const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
   );
 };
 
-export default HeaderedPage;
+export default PageTemplate;

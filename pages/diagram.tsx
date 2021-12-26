@@ -1,16 +1,16 @@
 import React from "react";
 import type { NextPage } from "next";
-import HeaderedPage from "@/components/HeaderedPage";
+import PageTemplate from "@/components/PageTemplate";
 import NonNullGraphsContextElement from "@/components/NonNullGraphsContextElement";
 import DiagramCanvas from "@/components/DiagramCanvas";
 
 const DiagramPage: NextPage = () => {
   return (
-    <HeaderedPage>
+    <PageTemplate>
       <NonNullGraphsContextElement
         contextElement={(context) => <DiagramCanvas context={context} />}
       />
-    </HeaderedPage>
+    </PageTemplate>
   );
 };
 
