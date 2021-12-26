@@ -1,26 +1,20 @@
-import { MatrixType } from "@/types/matrix";
 import React from "react";
-import { Stage, Layer, Text } from "react-konva";
+import { Stage, Layer, Circle } from "react-konva";
+import { NonNullGraphsContextType } from "@/contexts/graphs";
 
 type CoordinatesCanvasProps = {
-  width?: number;
-  height?: number;
-  matrix: MatrixType;
+  context: NonNullGraphsContextType;
 };
 
 const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
-  const width = props.width ?? 600;
-  const height = props.height ?? 600;
+  const SIZE = { width: 1000, height: 600 };
 
   return (
     <div>
-      <Stage
-        height={height}
-        width={width}
-        style={{ width, height }}
-        className="bg-secondary"
-      >
-        <Layer></Layer>
+      <Stage className="bg-secondary" style={SIZE} {...SIZE} draggable={true}>
+        <Layer>
+          <Circle x={0} y={0} radius={10} fill="black" />
+        </Layer>
       </Stage>
     </div>
   );

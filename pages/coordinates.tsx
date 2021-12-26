@@ -12,9 +12,7 @@ const CoordinateSystemPage: NextPage = () => {
   return (
     <PageTemplate>
       <NonNullGraphsContextElement
-        contextElement={(context) => (
-          <CoordinatesCanvas matrix={context.matrix} />
-        )}
+        contextElement={(context) => <CoordinatesCanvas context={context} />}
       />
     </PageTemplate>
   );
