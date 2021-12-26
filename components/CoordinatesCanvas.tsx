@@ -7,7 +7,6 @@ type CoordinatesCanvasProps = {
   context: NonNullGraphsContextType;
 };
 
-const CANVAS_SIZE = { width: 1000, height: 600 };
 const CELL_SIZE = { width: 32, height: 32 };
 const AXIS_LABEL_SIZE = { width: 256, height: 32 };
 const AXIS_LABEL_OFFSET = {
@@ -215,11 +214,10 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     .flat(1);
 
   return (
-    <div>
+    <div className="bg-secondary vh-100 w-100 overflow-hidden">
       <Stage
-        className="bg-secondary"
-        style={CANVAS_SIZE}
-        {...CANVAS_SIZE}
+        width={1280}
+        height={720}
         draggable={true}
         onWheel={handleWheel}
         {...stage}
