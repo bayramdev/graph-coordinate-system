@@ -13,43 +13,38 @@ type DiagramCanvasProps = {
 const DIAGRAM_CIRCLE_RADIUS = 1000;
 
 const DiagramCanvas: React.FC<DiagramCanvasProps> = (props) => {
-  return (
-    <ReactFlow
-      elements={[
-        ...props.context.current.nodes.map(
-          (node, index): FlowNode => ({
-            id: node.id,
-            position: {
-              x:
-                Math.cos(
-                  (2 * Math.PI * index) / props.context.current.nodes.length
-                ) * DIAGRAM_CIRCLE_RADIUS,
-              y:
-                Math.sin(
-                  (2 * Math.PI * index) / props.context.current.nodes.length
-                ) * DIAGRAM_CIRCLE_RADIUS,
-            },
-            data: { label: node.label },
-            connectable: false,
-          })
-        ),
-        ...props.context.current.edges.map(
-          (edge): FlowEdge => ({
-            id: edge.source + edge.target,
-            label: edge.metadata.factor,
-            labelStyle: { fontSize: 14 },
-            labelBgPadding: [6, 3],
-            labelBgBorderRadius: 5,
-            source: edge.source,
-            target: edge.target,
-            type: "smooth",
-            arrowHeadType: ArrowHeadType.Arrow,
-          })
-        ),
-      ]}
-      className="bg-secondary"
-    />
-  );
+  const currentGraph = props.context.current;
+
+  const nodes = currentGraph.nodes.map((node, index): FlowNode => {
+    const nodeRatio = index / currentGraph.nodes.length;
+    const radians = 2 * Math.PI * nodeRatio;
+
+    return {
+      id: node.id,
+      position: {
+        x: Math.cos(radians) * DIAGRAM_CIRCLE_RADIUS,
+        y: Math.sin(radians) * DIAGRAM_CIRCLE_RADIUS,
+      },
+      data: { label: node.label },
+      connectable: false,
+    };
+  });
+
+  const edges = currentGraph.edges.map((edge): FlowEdge => {
+    return {
+      id: edge.source + edge.target,
+      label: edge.metadata.factor,
+      labelStyle: { fontSize: 14 },
+      labelBgPadding: [6, 3],
+      labelBgBorderRadius: 5,
+      source: edge.source,
+      target: edge.target,
+      type: "smooth",
+      arrowHeadType: ArrowHeadType.Arrow,
+    };
+  });
+
+  return <ReactFlow elements={[...nodes, ...edges]} className="bg-secondary" />;
 };
 
 export default DiagramCanvas;
