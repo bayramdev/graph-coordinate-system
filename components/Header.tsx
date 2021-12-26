@@ -32,6 +32,12 @@ const Header = () => {
                   )}
                 />
                 <HeaderLink
+                  href="/graph2d"
+                  child={(a) => (
+                    <NavDropdown.Item active={a}>Graph</NavDropdown.Item>
+                  )}
+                />
+                <HeaderLink
                   href="/graph3d"
                   child={(a) => (
                     <NavDropdown.Item active={a}>3D Graph</NavDropdown.Item>
