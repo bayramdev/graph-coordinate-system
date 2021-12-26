@@ -1,8 +1,20 @@
 import { useState } from "react";
 import { KonvaEventObject } from "konva/lib/Node";
 
-const useWheelZoom = () => {
-  const [stage, setStage] = useState({ scale: { x: 1, y: 1 }, x: 0, y: 0 });
+type StageDataType = {
+  scale: { x: number; y: number };
+  x: number;
+  y: number;
+};
+
+const useWheelZoom = (defaultState?: StageDataType) => {
+  const [stage, setStage] = useState<StageDataType>(
+    defaultState ?? {
+      scale: { x: 1, y: 1 },
+      x: 256,
+      y: -512,
+    }
+  );
 
   const handleWheel = (e: KonvaEventObject<WheelEvent>) => {
     e.evt.preventDefault();
