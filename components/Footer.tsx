@@ -7,14 +7,14 @@ const Footer = () => {
       <Container className="py-4 text-center">
         Made by{" "}
         <a href="https://github.com/bayramdev" className="text-white">
-          Bayram
+          <u>Bayram</u>
         </a>{" "}
         and served at{" "}
         <a
           href="https://github.com/bayramdev/graph-coordinate-system"
-          className="text-white"
+          className="text-white text-underline"
         >
-          GitHub
+          <u>GitHub</u>
         </a>
       </Container>
     </footer>
