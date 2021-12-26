@@ -1,12 +1,23 @@
 import { Dispatch, SetStateAction } from "react";
 
-type NodeID = string;
-type EdgeMetadata = { factor: number };
+export type NodeIDType = string;
+export type EdgeMetadataType = { factor: number };
+
+export type NodeType = {
+  id: NodeIDType;
+  label: string;
+};
+
+export type EdgeType = {
+  source: NodeIDType;
+  target: NodeIDType;
+  metadata: EdgeMetadataType;
+};
 
 export type GraphType = {
   label: string;
-  nodes: { id: NodeID; label: string }[];
-  edges: { source: NodeID; target: NodeID; metadata: EdgeMetadata }[];
+  nodes: NodeType[];
+  edges: EdgeType[];
 };
 
 export type GraphsType = {
