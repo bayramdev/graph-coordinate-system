@@ -7,8 +7,10 @@ type Graph2DCanvasProps = {
 };
 
 const Graph2DCanvas: React.FC<Graph2DCanvasProps> = (props) => {
+  const SIZE = { width: 1000, height: 600 };
+
   return (
-    <div className="bg-secondary" style={{ width: 1000, height: 600 }}>
+    <div className="bg-secondary" style={SIZE}>
       <ForceGraph2D
         graphData={{
           nodes: props.context.current.nodes,
@@ -23,6 +25,7 @@ const Graph2DCanvas: React.FC<Graph2DCanvasProps> = (props) => {
         linkDirectionalArrowLength={3.5}
         linkDirectionalArrowRelPos={1}
         linkCurvature={0.25}
+        {...SIZE}
       />
     </div>
   );
