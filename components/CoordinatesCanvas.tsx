@@ -144,6 +144,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         fill={color}
         stroke={color}
         strokeWidth={AXIS_GRID_LINE_WIDTH}
+        id={`yAxisGridLine:${order}`}
       />
     );
   });
@@ -166,6 +167,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         fill={color}
         stroke={color}
         strokeWidth={AXIS_GRID_LINE_WIDTH}
+        id={`xAxisGridLine:${order}`}
       />
     );
   });
@@ -191,6 +193,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         onClick={(_event) => {
           setSelectedNodeOrder(order);
         }}
+        id={`selfPoint:${order}`}
       />
     );
   });
@@ -207,6 +210,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
             y={yToCanvasPos(yPos)}
             radius={TARGET_POINT_RADIUS}
             fill={TARGET_POINT_COLOR}
+            id={`targetPoint:${rowIndex}:${columnIndex}`}
           />
         ) : null;
       })
