@@ -1,7 +1,10 @@
+import type { NextPage } from "next";
+import dynamic from "next/dynamic";
 import HeaderedPage from "@/components/HeaderedPage";
 import NonNullGraphsContextElement from "@/components/NonNullGraphsContextElement";
-import Graph2DCanvas from "@/components/Graph2DCanvas";
-import type { NextPage } from "next";
+const Graph2DCanvas = dynamic(() => import("@/components/Graph2DCanvas"), {
+  ssr: false,
+});
 
 const Graph2DPage: NextPage = () => {
   return (
