@@ -20,7 +20,9 @@ const AXIS_GRID_LINE_WIDTH = 1;
 const AXIS_LINE_PADDING_NEG = 8;
 const AXIS_LINE_PADDING_POS = 4;
 
-const POINT_RADIUS = 3;
+const ORIGIN_POINT_RADIUS = 5;
+const SELF_POINT_RADIUS = 4;
+const TARGET_POINT_RADIUS = 3;
 
 const AXIS_LABEL_FONT_SIZE = 14;
 
@@ -28,6 +30,8 @@ const AXIS_LABEL_COLOR = "black";
 const AXIS_LINE_COLOR = "black";
 const AXIS_GRID_LINE_COLOR = "gray";
 const ORIGIN_POINT_COLOR = "red";
+const SELF_POINT_COLOR = "green";
+const TARGET_POINT_COLOR = "blue";
 
 const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
   const xPosToCanvas = (pos: number) => (pos - 0.5) * CELL_SIZE.width;
@@ -154,10 +158,41 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     <Circle
       x={xPosToCanvas(0)}
       y={yPosToCanvas(0)}
-      radius={POINT_RADIUS}
+      radius={ORIGIN_POINT_RADIUS}
       fill={ORIGIN_POINT_COLOR}
     />
   );
+
+  const selfPoints = props.context.current.nodes.map((_node, index) => {
+    const order = index + 1;
+
+    return (
+      <Circle
+        x={xPosToCanvas(order)}
+        y={yPosToCanvas(order)}
+        radius={SELF_POINT_RADIUS}
+        fill={SELF_POINT_COLOR}
+      />
+    );
+  });
+
+  const targetPoints = props.context.matrix
+    .map((row, rowIndex) =>
+      row.map((value, columnIndex) => {
+        const yPos = rowIndex + 1;
+        const xPos = columnIndex + 1;
+
+        return value ? (
+          <Circle
+            x={xPosToCanvas(xPos)}
+            y={yPosToCanvas(yPos)}
+            radius={TARGET_POINT_RADIUS}
+            fill={TARGET_POINT_COLOR}
+          />
+        ) : null;
+      })
+    )
+    .flat(1);
 
   return (
     <div>
@@ -180,6 +215,8 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
           {xAxisLabels}
 
           {originPoint}
+          {selfPoints}
+          {targetPoints}
         </Layer>
       </Stage>
     </div>
