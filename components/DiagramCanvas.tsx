@@ -23,7 +23,7 @@ const DiagramCanvas: React.FC<DiagramCanvasProps> = (props) => {
       id: node.id,
       position: {
         x: Math.cos(radians) * DIAGRAM_CIRCLE_RADIUS,
-        y: Math.sin(radians) * DIAGRAM_CIRCLE_RADIUS,
+        y: -1 * Math.sin(radians) * DIAGRAM_CIRCLE_RADIUS,
       },
       data: { label: node.label },
       connectable: false,
