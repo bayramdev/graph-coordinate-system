@@ -19,7 +19,8 @@ const Header = () => {
             <Nav className="me-auto">
               <HeaderLink href="/coordinates">Coordinates</HeaderLink>
               <HeaderLink href="/diagram">Diagram</HeaderLink>
-              <HeaderLink href="/graph3d">Graph 3D</HeaderLink>
+              <HeaderLink href="/graph3d">3D Graph</HeaderLink>
+              <HeaderLink href="/about">About</HeaderLink>
             </Nav>
 
             <Nav>
