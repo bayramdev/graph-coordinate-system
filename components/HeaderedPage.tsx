@@ -1,7 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Container from "react-bootstrap/Container";
-import Header from "./Header";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 interface HeaderedPageProps {
   title?: string;
@@ -19,7 +20,11 @@ const HeaderedPage: React.FC<HeaderedPageProps> = (props) => {
 
       <Header />
 
-      <Container className="py-4 w-100 h-100">{props.children}</Container>
+      <Container>
+        <main className="py-4 w-100 h-100">{props.children}</main>
+      </Container>
+
+      <Footer />
     </div>
   );
 };

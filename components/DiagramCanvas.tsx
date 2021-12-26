@@ -44,7 +44,12 @@ const DiagramCanvas: React.FC<DiagramCanvasProps> = (props) => {
     };
   });
 
-  return <ReactFlow elements={[...nodes, ...edges]} className="bg-secondary" />;
+  return (
+    <ReactFlow
+      elements={[...nodes, ...edges]}
+      className="bg-secondary vh-100"
+    />
+  );
 };
 
 export default DiagramCanvas;
