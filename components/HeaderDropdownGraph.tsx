@@ -18,7 +18,7 @@ const HeaderDropdownGraph = () => {
     <DropdownButton
       variant="success"
       id="dropdown-basic-button"
-      title="Graph label"
+      title="Current graph"
       disabled={graphs === null}
     >
       {graphs?.graphs?.map((graph) => (

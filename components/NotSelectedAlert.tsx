@@ -7,7 +7,7 @@ const NotSelectedAlert = () => {
       <Alert.Heading>Not selected any graph</Alert.Heading>
       <p>
         A graph group is not selected. You can select a graph from{" "}
-        <strong>Graph Label</strong> dropdown button on top right.
+        <strong>Current graph</strong> dropdown button on top right.
       </p>
     </Alert>
   );
