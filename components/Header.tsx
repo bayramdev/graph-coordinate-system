@@ -3,6 +3,7 @@ import Link from "next/link";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import HeaderLink from "./HeaderLink";
 import HeaderDataButton from "./HeaderDataButton";
 
@@ -17,10 +18,30 @@ const Header = () => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <HeaderLink href="/coordinates">Coordinates</HeaderLink>
-              <HeaderLink href="/diagram">Diagram</HeaderLink>
-              <HeaderLink href="/graph3d">3D Graph</HeaderLink>
-              <HeaderLink href="/about">About</HeaderLink>
+              <NavDropdown title="Simulations" id="basic-nav-dropdown">
+                <HeaderLink
+                  href="/coordinates"
+                  child={(a) => (
+                    <NavDropdown.Item active={a}>Coordinates</NavDropdown.Item>
+                  )}
+                />
+                <HeaderLink
+                  href="/diagram"
+                  child={(a) => (
+                    <NavDropdown.Item active={a}>Diagram</NavDropdown.Item>
+                  )}
+                />
+                <HeaderLink
+                  href="/graph3d"
+                  child={(a) => (
+                    <NavDropdown.Item active={a}>3D Graph</NavDropdown.Item>
+                  )}
+                />
+              </NavDropdown>
+              <HeaderLink
+                href="/about"
+                child={(a) => <Nav.Link active={a}>About</Nav.Link>}
+              />
             </Nav>
 
             <Nav>

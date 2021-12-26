@@ -1,10 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 interface RouteAwareNavLinkProps {
   href: string;
+  child: (active: boolean) => React.ReactNode;
 }
 
 const HeaderLink: React.FC<RouteAwareNavLinkProps> = (props) => {
@@ -16,7 +17,7 @@ const HeaderLink: React.FC<RouteAwareNavLinkProps> = (props) => {
 
   return (
     <Link href={props.href} passHref>
-      <Nav.Link active={isActive}>{props.children}</Nav.Link>
+      {props.child(isActive)}
     </Link>
   );
 };
