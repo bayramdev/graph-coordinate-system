@@ -59,13 +59,13 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
       text={node.label}
       fill={AXIS_LABEL_COLOR}
       fontSize={AXIS_LABEL_FONT_SIZE}
-      key={node.id}
       align="right"
       verticalAlign="middle"
       width={AXIS_LABEL_SIZE.width}
       height={AXIS_LABEL_SIZE.height}
       ellipsis={true}
       wrap="none"
+      key={`yAxisLabel:${node.id}`}
     />
   ));
 
@@ -81,7 +81,6 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         text={node.label}
         fill={AXIS_LABEL_COLOR}
         fontSize={AXIS_LABEL_FONT_SIZE}
-        key={node.id}
         rotation={270}
         align="right"
         verticalAlign="middle"
@@ -89,6 +88,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         height={AXIS_LABEL_SIZE.height}
         ellipsis={true}
         wrap="none"
+        key={`xAxisLabel:${node.id}`}
       />
     ));
 
