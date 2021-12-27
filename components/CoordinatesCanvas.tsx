@@ -191,6 +191,9 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         onClick={(_event) => {
           props.setSelected(order);
         }}
+	onTouchStart={(_event) => {
+	  props.setSelected(order);
+	}}
         key={`selfPoint:${order}`}
       />
     );
