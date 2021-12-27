@@ -10,6 +10,8 @@ type CoordinatesInfoProps = {
 const CoordinatesInfo: React.FC<CoordinatesInfoProps> = (props) => {
   return (
     <div className="mt-4">
+      <p>Displaying analyze for the selected node labeled <strong>{props.context.current.nodes[props.selectedIndex].label}</strong>...</p>
+
       <h2 className="mt-4 mb-2">Level 1 Targeted Nodes</h2>
       <Table striped bordered hover>
         <thead>
