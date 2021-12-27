@@ -5,6 +5,8 @@ import useWheelZoom from "hooks/useWheelZoom";
 
 type CoordinatesCanvasProps = {
   context: NonNullGraphsContextType;
+  selected: number | null;
+  setSelected: React.Dispatch<React.SetStateAction<number | null>>;
 };
 
 const CELL_SIZE = { width: 32, height: 32 };
@@ -44,12 +46,8 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     y: -0.5 * yToCanvasPos(0),
   });
 
-  const [selectedNodeOrder, setSelectedNodeOrder] = React.useState<
-    number | null
-  >(null);
-
   React.useEffect(() => {
-    setSelectedNodeOrder(null);
+    props.setSelected(null);
   }, [props.context]);
 
   const yAxisLabels = props.context.current.nodes.map((node, index) => (
@@ -128,7 +126,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
 
   const yAxisGridLines = props.context.current.nodes.map((_node, index) => {
     const order = index + 1;
-    const isSelected = order === selectedNodeOrder;
+    const isSelected = order === props.selected;
     const color = isSelected
       ? AXIS_SELECTED_GRID_LINE_COLOR
       : AXIS_GRID_LINE_COLOR;
@@ -151,7 +149,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
 
   const xAxisGridLines = props.context.current.nodes.map((_node, index) => {
     const order = index + 1;
-    const isSelected = order === selectedNodeOrder;
+    const isSelected = order === props.selected;
     const color = isSelected
       ? AXIS_SELECTED_GRID_LINE_COLOR
       : AXIS_GRID_LINE_COLOR;
@@ -191,7 +189,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         radius={SELF_POINT_RADIUS}
         fill={SELF_POINT_COLOR}
         onClick={(_event) => {
-          setSelectedNodeOrder(order);
+          props.setSelected(order);
         }}
         key={`selfPoint:${order}`}
       />
