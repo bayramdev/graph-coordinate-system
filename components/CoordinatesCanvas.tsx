@@ -68,6 +68,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
   ));
 
   const xAxisLabels = props.context.current.nodes
+    .slice()
     .reverse()
     .map((node, index) => (
       <Text
