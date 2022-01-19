@@ -50,46 +50,46 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     props.setSelected(null);
   }, [props.context]);
 
-  const yAxisLabels = props.context.current.nodes.map((node, index) => (
-    <Text
-      x={-1 * AXIS_LABEL_OFFSET.width}
-      y={index * CELL_SIZE.height}
-      text={node.label}
-      fill={AXIS_LABEL_COLOR}
-      fontSize={AXIS_LABEL_FONT_SIZE}
-      align="right"
-      verticalAlign="middle"
-      width={AXIS_LABEL_SIZE.width}
-      height={AXIS_LABEL_SIZE.height}
-      ellipsis={true}
-      wrap="none"
-      key={`yAxisLabel:${node.id}`}
-    />
-  ));
-
-  const xAxisLabels = props.context.current.nodes
+  const yAxisLabels = props.context.current.nodes
     .slice()
     .reverse()
     .map((node, index) => (
       <Text
-        x={index * CELL_SIZE.width}
-        y={
-          props.context.current.nodes.length * CELL_SIZE.height +
-          AXIS_LABEL_OFFSET.height
-        }
+        x={-1 * AXIS_LABEL_OFFSET.width}
+        y={index * CELL_SIZE.height}
         text={node.label}
         fill={AXIS_LABEL_COLOR}
         fontSize={AXIS_LABEL_FONT_SIZE}
-        rotation={270}
         align="right"
         verticalAlign="middle"
         width={AXIS_LABEL_SIZE.width}
         height={AXIS_LABEL_SIZE.height}
         ellipsis={true}
         wrap="none"
-        key={`xAxisLabel:${node.id}`}
+        key={`yAxisLabel:${node.id}`}
       />
     ));
+
+  const xAxisLabels = props.context.current.nodes.map((node, index) => (
+    <Text
+      x={index * CELL_SIZE.width}
+      y={
+        props.context.current.nodes.length * CELL_SIZE.height +
+        AXIS_LABEL_OFFSET.height
+      }
+      text={node.label}
+      fill={AXIS_LABEL_COLOR}
+      fontSize={AXIS_LABEL_FONT_SIZE}
+      rotation={270}
+      align="right"
+      verticalAlign="middle"
+      width={AXIS_LABEL_SIZE.width}
+      height={AXIS_LABEL_SIZE.height}
+      ellipsis={true}
+      wrap="none"
+      key={`xAxisLabel:${node.id}`}
+    />
+  ));
 
   const yAxisLine = (
     <Arrow
@@ -192,9 +192,9 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         onClick={(_event) => {
           props.setSelected(order);
         }}
-	onTouchStart={(_event) => {
-	  props.setSelected(order);
-	}}
+        onTouchStart={(_event) => {
+          props.setSelected(order);
+        }}
         key={`selfPoint:${order}`}
       />
     );
