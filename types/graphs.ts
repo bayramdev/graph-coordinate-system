@@ -6,6 +6,7 @@ export type EdgeMetadataType = { factor: number };
 export type NodeType = {
   id: NodeIDType;
   label: string;
+  certain: boolean | null;
 };
 
 export type EdgeType = {
