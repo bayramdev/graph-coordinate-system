@@ -10,10 +10,12 @@ const EXAMPLE_JSON: GraphsType = {
         {
           id: "0",
           label: "Vsauce",
+          certain: true,
         },
         {
           id: "1",
           label: "Kurzgesagt - In a Nutshell",
+          certain: false,
         },
       ],
       edges: [
