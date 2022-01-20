@@ -21,11 +21,12 @@ const Graph3DCanvas: React.FC<Graph3DCanvasProps> = (props) => {
           })),
         }}
         nodeColor={(node) => colorNodeBy((node as NodeType).certain)}
-        linkColor={(edge) => colorEdgeBy((edge.source as NodeType).certain)}
+        linkColor={(edge) => colorEdgeBy((edge.target as NodeType).certain)}
         nodeLabel="label"
         linkLabel="label"
         linkDirectionalArrowLength={3.5}
         linkDirectionalArrowRelPos={1}
+        linkWidth={2}
         linkCurvature={0.25}
         width={1280}
         height={720}

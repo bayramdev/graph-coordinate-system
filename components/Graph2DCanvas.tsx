@@ -21,7 +21,7 @@ const Graph2DCanvas: React.FC<Graph2DCanvasProps> = (props) => {
           })),
         }}
         nodeColor={(node) => colorNodeBy((node as NodeType).certain)}
-        linkColor={(edge) => colorEdgeBy((edge.source as NodeType).certain)}
+        linkColor={(edge) => colorEdgeBy((edge.target as NodeType).certain)}
         nodeLabel="label"
         linkLabel="label"
         linkDirectionalArrowLength={3.5}
