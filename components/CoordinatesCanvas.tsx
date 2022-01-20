@@ -2,6 +2,7 @@ import React from "react";
 import { Stage, Layer, Text, Arrow, Circle, Line } from "react-konva";
 import { NonNullGraphsContextType } from "@/contexts/graphs";
 import useWheelZoom from "hooks/useWheelZoom";
+import { colorNodeBy } from "utils/colors";
 
 type CoordinatesCanvasProps = {
   context: NonNullGraphsContextType;
@@ -180,7 +181,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     />
   );
 
-  const selfPoints = props.context.current.nodes.map((_node, index) => {
+  const selfPoints = props.context.current.nodes.map((node, index) => {
     const order = index + 1;
 
     return (
@@ -188,7 +189,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         x={xToCanvasPos(order)}
         y={yToCanvasPos(order)}
         radius={SELF_POINT_RADIUS}
-        fill={SELF_POINT_COLOR}
+        fill={colorNodeBy(node.certain)}
         onClick={(_event) => {
           props.setSelected(order);
         }}
