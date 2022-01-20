@@ -1,6 +1,8 @@
 import React from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import { NonNullGraphsContextType } from "@/contexts/graphs";
+import { colorNodeBy, colorEdgeBy } from "utils/colors";
+import { NodeType } from "@/types/graphs";
 
 type Graph2DCanvasProps = {
   context: NonNullGraphsContextType;
@@ -18,6 +20,8 @@ const Graph2DCanvas: React.FC<Graph2DCanvasProps> = (props) => {
             label: edge.metadata.factor,
           })),
         }}
+        nodeColor={(node) => colorNodeBy((node as NodeType).certain)}
+        linkColor={(edge) => colorEdgeBy((edge.source as NodeType).certain)}
         nodeLabel="label"
         linkLabel="label"
         linkDirectionalArrowLength={3.5}
