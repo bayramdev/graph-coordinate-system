@@ -36,7 +36,9 @@ const CoordinatesInfo: React.FC<CoordinatesInfoProps> = (props) => {
     <div className="mt-4">
       <p>
         Displaying analyze for the selected node labeled{" "}
-        <strong>{selected.label}</strong>
+        <strong>
+          {props.context.current.nodes[props.selectedIndex].label}
+        </strong>
         ...
       </p>
 
@@ -50,13 +52,15 @@ const CoordinatesInfo: React.FC<CoordinatesInfoProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {directTargetIndexesOfSelected.map((target) => (
-            <tr>
-              <td>{target}</td>
-              <td>{props.context.matrix[target][props.selectedIndex]}</td>
-              <td>{props.context.current.nodes[target].label}</td>
-            </tr>
-          ))}
+          {props.context.matrix.map((row, rowIndex) =>
+            row[props.selectedIndex] ? (
+              <tr key={`${row}-${rowIndex}`}>
+                <td>{rowIndex}</td>
+                <td>{row[props.selectedIndex]}</td>
+                <td>{props.context.current.nodes[rowIndex].label}</td>
+              </tr>
+            ) : null
+          )}
         </tbody>
       </Table>
 
@@ -71,14 +75,22 @@ const CoordinatesInfo: React.FC<CoordinatesInfoProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {indirectTargetIndexesOfSelected.map(([source, target]) => (
-            <tr>
-              <td>{target}</td>
-              <td>{props.context.matrix[target][source]}</td>
-              <td>{props.context.current.nodes[source].label}</td>
-              <td>{props.context.current.nodes[target].label}</td>
-            </tr>
-          ))}
+          {props.context.matrix.map((row, rowIndex) =>
+            row[props.selectedIndex]
+              ? props.context.matrix.map((rowInner, rowInnerIndex) =>
+                  rowInner[rowIndex] ? (
+                    <tr key={`${row}-${rowIndex}-${rowInner}-${rowInnerIndex}`}>
+                      <td>{rowIndex}</td>
+                      <td>{rowInner[rowIndex]}</td>
+                      <td>{props.context.current.nodes[rowIndex].label}</td>
+                      <td>
+                        {props.context.current.nodes[rowInnerIndex].label}
+                      </td>
+                    </tr>
+                  ) : null
+                )
+              : null
+          )}
         </tbody>
       </Table>
 
@@ -92,13 +104,15 @@ const CoordinatesInfo: React.FC<CoordinatesInfoProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {directSourceIndexesOfSelected.map((source) => (
-            <tr>
-              <td>{source}</td>
-              <td>{props.context.matrix[props.selectedIndex][source]}</td>
-              <td>{props.context.current.nodes[source].label}</td>
-            </tr>
-          ))}
+          {props.context.matrix[props.selectedIndex].map((value, colIndex) =>
+            value ? (
+              <tr key={`${value}-${colIndex}`}>
+                <td>{colIndex}</td>
+                <td>{value}</td>
+                <td>{props.context.current.nodes[colIndex].label}</td>
+              </tr>
+            ) : null
+          )}
         </tbody>
       </Table>
 
@@ -113,14 +127,22 @@ const CoordinatesInfo: React.FC<CoordinatesInfoProps> = (props) => {
           </tr>
         </thead>
         <tbody>
-          {indirectSourceIndexesOfSelected.map(([source, target]) => (
-            <tr>
-              <td>{target}</td>
-              <td>{props.context.matrix[target][source]}</td>
-              <td>{props.context.current.nodes[source].label}</td>
-              <td>{props.context.current.nodes[target].label}</td>
-            </tr>
-          ))}
+          {props.context.matrix[props.selectedIndex].map((value, colIndex) =>
+            value
+              ? props.context.matrix[colIndex].map((valueInner, indexInner) =>
+                  valueInner ? (
+                    <tr
+                      key={`${value}-${colIndex}-${valueInner}-${indexInner}`}
+                    >
+                      <td>{colIndex}</td>
+                      <td>{valueInner}</td>
+                      <td>{props.context.current.nodes[indexInner].label}</td>
+                      <td>{props.context.current.nodes[colIndex].label}</td>
+                    </tr>
+                  ) : null
+                )
+              : null
+          )}
         </tbody>
       </Table>
     </div>
