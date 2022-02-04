@@ -37,9 +37,11 @@ const TARGET_POINT_COLOR = "blue";
 const AXIS_SELECTED_GRID_LINE_COLOR = "red";
 
 const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
+  const { selected, setSelected, context } = props;
+
   const xToCanvasPos = (pos: number) => (pos - 0.5) * CELL_SIZE.width;
   const yToCanvasPos = (pos: number) =>
-    (props.context.current.nodes.length - (pos - 0.5)) * CELL_SIZE.height;
+    (context.current.nodes.length - (pos - 0.5)) * CELL_SIZE.height;
 
   const { stage, handleWheel } = useWheelZoom({
     scale: { x: 1, y: 1 },
@@ -48,10 +50,10 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
   });
 
   React.useEffect(() => {
-    props.setSelected(null);
-  }, [props.context]);
+    setSelected(null);
+  }, [context, setSelected]);
 
-  const yAxisLabels = props.context.current.nodes
+  const yAxisLabels = context.current.nodes
     .slice()
     .reverse()
     .map((node, index) => (
@@ -71,11 +73,11 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
       />
     ));
 
-  const xAxisLabels = props.context.current.nodes.map((node, index) => (
+  const xAxisLabels = context.current.nodes.map((node, index) => (
     <Text
       x={index * CELL_SIZE.width}
       y={
-        props.context.current.nodes.length * CELL_SIZE.height +
+        context.current.nodes.length * CELL_SIZE.height +
         AXIS_LABEL_OFFSET.height
       }
       text={node.label}
@@ -98,9 +100,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         xToCanvasPos(0),
         yToCanvasPos(0 - AXIS_LINE_PADDING_NEG),
         xToCanvasPos(0),
-        yToCanvasPos(
-          props.context.current.nodes.length + AXIS_LINE_PADDING_POS
-        ),
+        yToCanvasPos(context.current.nodes.length + AXIS_LINE_PADDING_POS),
       ]}
       fill={AXIS_LINE_COLOR}
       stroke={AXIS_LINE_COLOR}
@@ -114,9 +114,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
       points={[
         xToCanvasPos(0 - AXIS_LINE_PADDING_NEG),
         yToCanvasPos(0),
-        xToCanvasPos(
-          props.context.current.nodes.length + AXIS_LINE_PADDING_POS
-        ),
+        xToCanvasPos(context.current.nodes.length + AXIS_LINE_PADDING_POS),
         yToCanvasPos(0),
       ]}
       fill={AXIS_LINE_COLOR}
@@ -126,9 +124,9 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     />
   );
 
-  const yAxisGridLines = props.context.current.nodes.map((_node, index) => {
+  const yAxisGridLines = context.current.nodes.map((_node, index) => {
     const order = index + 1;
-    const isSelected = order === props.selected;
+    const isSelected = order === selected;
     const color = isSelected
       ? AXIS_SELECTED_GRID_LINE_COLOR
       : AXIS_GRID_LINE_COLOR;
@@ -137,7 +135,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
       <Line
         points={[
           xToCanvasPos(order),
-          yToCanvasPos(props.context.current.nodes.length),
+          yToCanvasPos(context.current.nodes.length),
           xToCanvasPos(order),
           yToCanvasPos(0),
         ]}
@@ -149,9 +147,9 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     );
   });
 
-  const xAxisGridLines = props.context.current.nodes.map((_node, index) => {
+  const xAxisGridLines = context.current.nodes.map((_node, index) => {
     const order = index + 1;
-    const isSelected = order === props.selected;
+    const isSelected = order === selected;
     const color = isSelected
       ? AXIS_SELECTED_GRID_LINE_COLOR
       : AXIS_GRID_LINE_COLOR;
@@ -161,7 +159,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         points={[
           xToCanvasPos(0),
           yToCanvasPos(order),
-          xToCanvasPos(props.context.current.nodes.length),
+          xToCanvasPos(context.current.nodes.length),
           yToCanvasPos(order),
         ]}
         fill={color}
@@ -181,7 +179,7 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
     />
   );
 
-  const selfPoints = props.context.current.nodes.map((node, index) => {
+  const selfPoints = context.current.nodes.map((node, index) => {
     const order = index + 1;
 
     return (
@@ -191,17 +189,17 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         radius={SELF_POINT_RADIUS}
         fill={colorNodeBy(node.certain)}
         onClick={(_event) => {
-          props.setSelected(order);
+          setSelected(order);
         }}
         onTouchStart={(_event) => {
-          props.setSelected(order);
+          setSelected(order);
         }}
         key={`selfPoint:${order}`}
       />
     );
   });
 
-  const targetPoints = props.context.matrix
+  const targetPoints = context.matrix
     .map((row, rowIndex) =>
       row.map((value, columnIndex) => {
         const yPos = rowIndex + 1;
@@ -226,6 +224,8 @@ const CoordinatesCanvas: React.FC<CoordinatesCanvasProps> = (props) => {
         width={1280}
         height={720}
         draggable={true}
+        // onDragStart={() => {}}
+        // onDragEnd={() => {}}
         onWheel={handleWheel}
         {...stage}
       >
